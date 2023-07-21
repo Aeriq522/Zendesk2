@@ -39,6 +39,7 @@ def run(playwright: Playwright) -> None:
                 page.get_by_role("button", name="Sign in").click()
 
                 #Sign In
+                # page.locator("[data-test-id=\"header-toolbar-add-menu-new-ticket\"]").click()
                 page.locator("[data-test-id=\"header-toolbar-add-menu-new-ticket\"]").hover(force=True)
                 page.locator("[data-test-id=\"header-toolbar-add-menu-new-ticket\"]").click()
                 
@@ -50,29 +51,24 @@ def run(playwright: Playwright) -> None:
                 page.locator("[data-test-id=\"omnicomposer-rich-text-ckeditor\"]").click()
                 page.get_by_text("Site Survey:").click()
 
-        # Only update the text that is in the CSV file
-                for index, value in enumerate(row):
-                    # if index in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]:
-                    #     template = page.get_by_text(f"{value}")
-                    #     template.fill(row[index])
-                    #     print(template)
-                    page.get_by_text("{Location}").fill(f"Location: {Location}")
-                    page.get_by_text("{Carrier}").fill(f"Carrier: {Carrier} | Download: {Download}Mbps | Upload: {Upload}Mbps |")
-                    page.get_by_text("{Mount}").fill(f"- {Mount}") 
-                    page.get_by_text("{FACP}").fill(f"FACP: Facp | Primary Number: {Primary} | Secondary Number: {Secondary} |")
-                    page.get_by_text("{Burglar}").fill(f"Burglar Panel: {Burglar}")
-                    page.get_by_text("{Intercomm}").fill(f"Intercom: {Intercomm}")
-                    page.get_by_text("{Elevator}").fill(f"Elevator : {Elevator}")
-                    page.get_by_text("{Elevator Notes}").fill(f"Elevator Notes: {Elevator_notes}")
-                    page.get_by_text("{Fax}").fill(f"Fax: {Fax}")
-                    page.get_by_text("{Total DiDs}").fill(f"Total Number of DiDs: {Total_dids}")
-                    page.get_by_text("{Notes}").fill(f"Notes: {Notes}")
-                    page.get_by_placeholder("search name or contact info").fill("er")
-                    page.locator("[data-test-id=\"ticket-system-field-requester-menu\"]").get_by_text("ik Sanchez").click()
-                    page.locator("[data-test-id=\"assignee-field-take-it-button\"]").click()
-                    page.locator("[data-test-id=\"submit_button-menu-button\"]").hover()
-                    page.locator("[data-test-id=\"submit_button-menu-button\"]").click()
-                    page.get_by_text("Submit as Pending").click()
+               
+                page.get_by_text("{Location}").fill(f"Location: {Location}")
+                page.get_by_text("{Carrier}").fill(f"Carrier: {Carrier} | Download: {Download} Mbps | Upload: {Upload} Mbps |")
+                page.get_by_text("{Mount}").fill(f"- {Mount}") 
+                page.get_by_text("{FACP}").fill(f"FACP: Facp | Primary Number: {Primary} | Secondary Number: {Secondary} |")
+                page.get_by_text("{Burglar}").fill(f"Burglar Panel: {Burglar}")
+                page.get_by_text("{Intercomm}").fill(f"Intercom: {Intercomm}")
+                page.get_by_text("{Elevator}").fill(f"Elevator : {Elevator}")
+                page.get_by_text("{Elevator Notes}").fill(f"Elevator Notes: {Elevator_notes}")
+                page.get_by_text("{Fax}").fill(f"Fax: {Fax}")
+                page.get_by_text("{Total DiDs}").fill(f"Total Number of DiDs: {Total_dids}")
+                page.get_by_text("{Notes}").fill(f"Notes: {Notes}")
+                page.get_by_placeholder("search name or contact info").fill("er")
+                page.locator("[data-test-id=\"ticket-system-field-requester-menu\"]").get_by_text("ik Sanchez").click()
+                page.locator("[data-test-id=\"assignee-field-take-it-button\"]").click()
+                page.locator("[data-test-id=\"submit_button-menu-button\"]").hover()
+                page.locator("[data-test-id=\"submit_button-menu-button\"]").click()
+                page.get_by_text("Submit as Pending").click()
 
                         # ---------------------
                 context.close()
