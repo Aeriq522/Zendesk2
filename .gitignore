@@ -4,3 +4,4 @@ node_modules/
 /playwright/.cache/
 /secrets.txt/
 secrets.txt
+secrets.env

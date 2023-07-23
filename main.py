@@ -13,7 +13,6 @@ USERNAME_FOR_ZENDESK = os.getenv("USERNAME_FOR_ZENDESK")
 PASSWORD_FOR_ZENDESK = os.getenv("PASSWORD_FOR_ZENDESK")
 
 
-
 # Get the current date and time
 current_date_time = datetime.now()
 
@@ -42,6 +41,7 @@ def run(playwright: Playwright) -> None:
     with open('tickets.csv', 'r') as csvfile:
        # try:
         reader = csv.reader(csvfile, delimiter=',')
+
         for row in reader:
            # Headers from the csv file
             Ticket_title = row[0]
@@ -154,22 +154,86 @@ def run(playwright: Playwright) -> None:
                 "[data-test-id=\"ticket-form-field-dropdown-field-8323312621837\"] svg").click()
             page.get_by_text("Site Survey WO").click()
 
-        # Ticket Resolution and Submit
-            page.locator("[data-test-id=\"ticket-fields-multiline-field\"]").click()
-            page.locator("[data-test-id=\"ticket-fields-multiline-field\"]").fill("Site survey completed. Please see the attached for the site survey results.")
-            
-            page.locator("[data-test-id=\"ticket-composer-toolbar-link-button\"]").click()
-            page.locator("[data-test-id=\"link-modal-link-input\"]").fill(Fieldnation_Workorder_Link)
-            page.locator("[data-test-id=\"link-modal-text-input\"]").click()
-            page.locator("[data-test-id=\"link-modal-text-input\"]").fill("\nField Nation Work Order")
-            page.locator("[data-test-id=\"link-modal-add-button\"]").click()
-            
+        # Ticket Resolution
+            page.locator(
+                "[data-test-id=\"ticket-fields-multiline-field\"]").click()
+            page.locator("[data-test-id=\"ticket-fields-multiline-field\"]").fill(
+                "Site survey completed. Please see the attached for the site survey results.")
 
+            page.locator(
+                "[data-test-id=\"ticket-composer-toolbar-link-button\"]").click()
+            page.locator(
+                "[data-test-id=\"link-modal-link-input\"]").fill(Fieldnation_Workorder_Link)
+            page.locator("[data-test-id=\"link-modal-text-input\"]").click()
+            page.locator(
+                "[data-test-id=\"link-modal-text-input\"]").fill("\n Field Nation Work Order")
+            page.locator("[data-test-id=\"link-modal-add-button\"]").click()
+
+        # Submit Ticket
             page.locator(
                 "[data-test-id=\"submit_button-menu-button\"]").hover()
             page.locator(
                 "[data-test-id=\"submit_button-menu-button\"]").click()
             page.get_by_text("Submit as Pending").click()
+
+        # # Return to the views page
+        #     page.locator("[data-test-id=\"views_icon\"]").click()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Ticket_Number_Value = "header-tab-subtitle"
+        # Assuming page.locator("[data-test-id=\"header-tab-subtitle\"]") returns a list of elements
+            elements = page.get_by_test_id(Ticket_Number_Value)
+
+            # Create a list to store the Ticket_Numbers
+            Ticket_Numbers = []
+
+            # Extract the text from each element and add it to the Ticket_Numbers list
+            for element in elements:
+                Ticket_Numbers.append(element.text)
+
+            # Now Ticket_Numbers contains all values in elements with data-test-id="header-tab-subtitle"
+            print(Ticket_Numbers)
+
+            # Load the original CSV data into csv_data
+            csv_file_path = "C:/Users/eriks/OneDrive/Desktop/Coding/Python Scripts/Zendesk/tickets.csv"
+
+            with open(csv_file_path, "r") as csvfile:
+                csv_reader = csv.reader(csvfile)
+                csv_data = list(csv_reader)
+
+            # element = page.get_by_role("cell", name=Ticket_title)
+            # if element:
+            #     Ticket_Number = element.get_attribute("name")
+
+        # Update the value in the corresponding row (assuming row 18 here)
+            row_index_to_update = 18  # Since list index is 0-based, row 18 is at index 17
+
+            if 0 <= row_index_to_update < len(csv_data):
+                csv_data[row_index_to_update] = Ticket_Numbers
+            else:
+                print("Invalid row index.")
+
+            # Write the updated csv_data back to the CSV file
+            csv_file_path = "C:/Users/eriks/OneDrive/Desktop/Coding/Python Scripts/Zendesk/tickets.csv"
+
+            with open(csv_file_path, "w", newline="") as csvfile:
+                csv_writer = csv.writer(csvfile)
+                csv_writer.writerows(csv_data)
 
        # Close the browser
             context.close()
