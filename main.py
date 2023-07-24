@@ -180,21 +180,6 @@ def run(playwright: Playwright) -> None:
         #     page.locator("[data-test-id=\"views_icon\"]").click()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             Ticket_Number_Value = "header-tab-subtitle"
         # Assuming page.locator("[data-test-id=\"header-tab-subtitle\"]") returns a list of elements
             elements = page.get_by_test_id(Ticket_Number_Value)
