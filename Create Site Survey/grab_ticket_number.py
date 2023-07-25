@@ -13,28 +13,6 @@ USERNAME_FOR_ZENDESK = os.getenv("USERNAME_FOR_ZENDESK")
 PASSWORD_FOR_ZENDESK = os.getenv("PASSWORD_FOR_ZENDESK")
 
 
-# Get the current date and time
-current_date_time = datetime.now()
-
-# Get today's date as a string in the format "MM/DD/YYYY"
-current_date_string = current_date_time.strftime("%m/%d/%Y")
-
-# Example: "MM/DD/YYYY"
-
-
-def add_two_days(date_string):
-    current_date = datetime.strptime(date_string, "%m/%d/%Y")
-    followup_date = current_date + timedelta(days=2)
-    followup_date_string = followup_date.strftime("%m/%d/%Y")
-    return followup_date_string
-
-
-# Get the follow-up date (2 days from today) as a string
-followup_date_string = add_two_days(current_date_string)
-
-# print("Today's Date: ", current_date_string)
-# print("Follow-up Date: ", followup_date_string)
-
 
 def run(playwright: Playwright) -> None:
 
@@ -78,7 +56,7 @@ def run(playwright: Playwright) -> None:
             page.get_by_role("button", name="Sign in").click()
             
         # Open Ticket To Search
-            page.get_by_role("cell", name="Shipped Devices and Accessories 7/14/23").locator("div").nth(1).click()
+            page.get_by_role("cell", name=Ticket_title).locator("div").nth(1).click()
             page.locator("[data-test-id=\"header-tab\"]").click()
             
         # Get the ticket number
