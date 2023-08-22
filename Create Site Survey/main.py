@@ -1,12 +1,12 @@
 import csv
 import os
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 
-# Load environment variables from .env file
-load_dotenv()
+# # Load environment variables from .env file
+# load_dotenv()
 
 # Access the secrets using os.getenv()
 USERNAME_FOR_ZENDESK = os.getenv("USERNAME_FOR_ZENDESK")
@@ -93,10 +93,12 @@ def run(playwright: Playwright) -> None:
                 "[data-test-id=\"omni-header-subject\"]").fill(Ticket_title)
             page.locator(
                 "[data-test-id=\"ticket-footer-macro-menu-autocomplete-input\"]").get_by_text("Apply macro").click()
+            
+            
             page.locator("#downshift-4-item-4").click()
             page.locator(
                 "[data-test-id=\"omnicomposer-rich-text-ckeditor\"]").click()
-            page.get_by_text("Site Survey:").click()
+            page.get_by_text("Site Survey").click()
 
        # Fill the form
             page.get_by_text("{Location}").fill(f"Location: {Location}")
