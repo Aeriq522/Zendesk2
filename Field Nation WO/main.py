@@ -10,7 +10,7 @@ def run(playwright: Playwright) -> None:
     page.get_by_label("Username / Login").fill("esanchez@machnetworks.com")
     page.get_by_role("button", name="Continue", exact=True).click()
     page.get_by_label("Password").click()
-    page.get_by_label("Password").fill("Esm522@@FieldNation")
+    page.get_by_label("Password").fill("")
     page.get_by_role("button", name="Log in").click()
     
     
