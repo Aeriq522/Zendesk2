@@ -7,10 +7,10 @@ def run(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://id.fieldnation.com/login?client_id=5PUz4s3nEwH3&redirect_uri=https%3A%2F%2Fapp.fieldnation.com%2F.ambassador%2Foauth2%2Fredirection-endpoint&response_type=code&scope=openid&state=96e18bc4addab6dd181f2560a17cf97384f3f5f19538c88d2d3fd69446487287%3Ahttps%3A%2F%2Fapp.fieldnation.com%2Fworkorders")
     page.get_by_label("Username / Login").click()
-    page.get_by_label("Username / Login").fill("esanchez@machnetworks.com")
+    page.get_by_label("Username / Login").fill("")
     page.get_by_role("button", name="Continue", exact=True).click()
     page.get_by_label("Password").click()
-    page.get_by_label("Password").fill("Esm522@@FieldNation")
+    page.get_by_label("Password").fill("")
     page.get_by_role("button", name="Log in").click()
     
     
