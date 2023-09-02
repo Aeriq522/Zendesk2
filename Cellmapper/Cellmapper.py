@@ -7,11 +7,6 @@ street_address_1 = "21010 39th Way S"
 zip_code = "98198"
 
 
-
-
-
-
-
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
@@ -28,43 +23,33 @@ def run(playwright: Playwright) -> None:
     page.locator("#modal_mapsettings_details").get_by_role("button", name="").click()
     
     
-    # After navigating to the page and interacting with other elements
+ # After navigating to the page and interacting with other elements
     # Define a regular expression pattern for the IDs
     id_pattern = r'#([a-f0-9]{41})'
     
-    # Get the HTML content of the page
+# Get the HTML content of the page
     html_content = page.content()
 
-    # Find all IDs matching the pattern - Hide Ad Popu
+# Find all IDs matching the pattern - Hide Ad Popu
     ids = re.findall(id_pattern, html_content)
     
     
-    # Set the Ad ID that will be hidden
+# Set the Ad ID that will be hidden
     ad_id = f"#{ids[0]}"
     # print(ad_id)
 
-    # Add CSS to hide the ad div
+# Add CSS to hide the ad div
     css_to_hide_ad = f"{ad_id} {{ display: none !important; }}"
     page.add_style_tag(content=css_to_hide_ad)
     
-    # Define the CSS selector for the <nav> element - Hide Navbar in Screenshot
+# Define the CSS selector for the <nav> element - Hide Navbar in Screenshot
     css_selector = ".navbar"
 
-    # Generate CSS to hide the element
+ # Generate CSS to hide the element
     css_to_hide_element = f"{css_selector} {{ display: none !important; }}"
 
-    # Inject the CSS using Playwright's page.add_style_tag() method
+# Inject the CSS using Playwright's page.add_style_tag() method
     page.add_style_tag(content=css_to_hide_element)
-    
-    #   # Define the CSS selector for the <button> element - Hide Menu Bar in Screenshot
-    # css_selector = ".btn.btn-primary.button-nav#button-menu-button"
-
-    # # Generate CSS to hide the element
-    # css_to_hide_element = f"{css_selector} {{ display: none !important; }}"
-
-    # # Inject the CSS using Playwright's page.add_style_tag() method
-    # page.add_style_tag(content=css_to_hide_element)
-
   
     
     page.get_by_role("button", name=" Search").click()
@@ -75,24 +60,39 @@ def run(playwright: Playwright) -> None:
     page.get_by_role("button", name=" Hide Menu").click()
    
     
-    
     time.sleep(5)  # Add a 5-second delay
     page.wait_for_selector('button[class="ol-zoom-out"]')
-    # # Click the button
+
+# Click the button
     page.click('button[class="ol-zoom-out"]')
     # page.get_by_role("button", name=" Hide Menu").click()
   
+      
+# Define the CSS selector for the <button> element - Hide Menu Bar in Screenshot
+    css_selector = ".btn.btn-primary.button-nav#button-menu-button"
+    # # Generate CSS to hide the element
+    css_to_hide_button = f"{css_selector} {{ display: none !important; }}"
+    # Inject the CSS using Playwright's page.add_style_tag() method
+    page.add_style_tag(content=css_to_hide_button)
+
   
-    time.sleep(5)  # Add a 5-second delay
+    time.sleep(3)  # Add a 5-second delay
     
     
-    # Create the folder if it doesn't exist
+# Create the folder if it doesn't exist
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     screenshot_path = os.path.join(folder_name, "ATTCellMapper.png")
     page.screenshot(path=screenshot_path, full_page=True) # Screenshot the page
     
+# Generate CSS to hide the element
+    css_to_restore_button = f"{css_selector} {{ display: block !important; }}"
+   
+    # Show the button element again by resetting the style to empty string
+    page.add_style_tag(content=css_to_restore_button)
     
+    
+    time.sleep(1)  # Add a 5-second delay
     page.get_by_role("button", name=" Menu").click()
     page.get_by_role("button", name=" Provider").click()
     page.get_by_text("AT&T Mobility - United States of America - 310410").nth(1).click()
@@ -100,40 +100,67 @@ def run(playwright: Playwright) -> None:
     page.get_by_role("option", name="Verizon - United States of America - 311480").click()
     page.locator("#modal_select_provider").get_by_role("button", name="").click()
     
+    time.sleep(1)  # Add a 5-second delay
     page.get_by_role("button", name=" Settings").click()
     page.locator("#doTrails").check()
     page.locator("#doTrails").uncheck()
     page.locator("#modal_mapsettings_details").get_by_role("button", name="").click()
     page.get_by_role("button", name=" Hide Menu").click()
-   
     
+# Define the CSS selector for the <button> element - Hide Menu Bar in Screenshot
+    css_selector = ".btn.btn-primary.button-nav#button-menu-button"
+    # # Generate CSS to hide the element
+    css_to_hide_button = f"{css_selector} {{ display: none !important; }}"
+    # # Inject the CSS using Playwright's page.add_style_tag() method
+    page.add_style_tag(content=css_to_hide_button)
+
+#Take Verizon screenshot
     time.sleep(3)  # Add a 5-second delay
     screenshot_path = os.path.join(folder_name, "VerizonCellMapper.png")
     page.screenshot(path=screenshot_path, full_page=True) # Screenshot the page
-   
     
     
+# Generate CSS to hide the element
+    css_to_restore_button = f"{css_selector} {{ display: block !important; }}"
+    # Show the button element again by resetting the style to empty string
+    page.add_style_tag(content=css_to_restore_button)
+    
+# Swap to TMobile screenshot
+    time.sleep(1)  # Add a 5-second delay
     page.get_by_role("button", name=" Menu").click()
     page.get_by_role("button", name=" Provider").click()
     page.get_by_text("Verizon - United States of America - 311480").nth(1).click()
     page.get_by_role("combobox", name="Select a Provider").fill("mobile")
     page.get_by_role("option", name="T-Mobile USA - United States of America - 310260").click()
     page.locator("#modal_select_provider").get_by_role("button", name="").click()
-    
+    time.sleep(1)  # Add a 5-second delay
     page.get_by_role("button", name=" Settings").click()
     page.locator("#doTrails").check()
     page.locator("#doTrails").uncheck()
     page.locator("#modal_mapsettings_details").get_by_role("button", name="").click()
     page.get_by_role("button", name=" Hide Menu").click()
    
+    # Define the CSS selector for the <button> element - Hide Menu Bar in Screenshot
+    css_selector = ".btn.btn-primary.button-nav#button-menu-button"
+    # # Generate CSS to hide the element
+    css_to_hide_button = f"{css_selector} {{ display: none !important; }}"
+    # # Inject the CSS using Playwright's page.add_style_tag() method
+    page.add_style_tag(content=css_to_hide_button)
+    
     
     time.sleep(3)  # Add a 5-second delay
     screenshot_path = os.path.join(folder_name, "TMobileCellMapper.png")
     page.screenshot(path=screenshot_path, full_page=True) # Screenshot the page
 
     
+# Generate CSS to hide the element
+    css_to_restore_button = f"{css_selector} {{ display: block !important; }}"
+    # Show the button element again by resetting the style to empty string
+    page.add_style_tag(content=css_to_restore_button)
+
     
-    # Grab Google Maps Screenshot for Location
+    
+# Grab Google Maps Screenshot for Location
     page2 = context.new_page()
     page2.goto("https://www.google.com/maps")
     page2.get_by_role("textbox", name="Search Google Maps").click()
@@ -143,6 +170,15 @@ def run(playwright: Playwright) -> None:
     page2.get_by_role("button", name="Collapse side panel").click()
     page2.get_by_role("button", name="Zoom out").click()
     page2.get_by_role("button", name="Zoom out").click()
+    
+# Define the CSS selector to target the button based on the class attribute
+    css_selector_map = ".btn yHc72 qk5Wte"
+
+    # Generate CSS to hide the element
+    css_to_hide_map = f"{css_selector_map} {{ display: none !important; }}"
+
+    # Inject the CSS using Playwright's page.add_style_tag() method to hide the button
+    page.add_style_tag(content=css_to_hide_map)
    
     
     
