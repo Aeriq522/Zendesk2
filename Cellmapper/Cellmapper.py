@@ -172,7 +172,7 @@ def run(playwright: Playwright) -> None:
     page2.get_by_role("button", name="Zoom out").click()
     
 # Define the CSS selector to target the button based on the class attribute
-    css_selector_map = ".btn yHc72 qk5Wte"
+    css_selector_map = `.btn yHc72 qk5Wte"
 
     # Generate CSS to hide the element
     css_to_hide_map = f"{css_selector_map} {{ display: none !important; }}"
