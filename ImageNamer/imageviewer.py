@@ -5,22 +5,28 @@ from tkinterdnd2 import DND_FILES, TkinterDnD
 from pathlib import Path
 
 # Define the folder path containing your images
-folder_path = "C:/Users/eriks/Downloads/SiteImages"
+folder_path = "C:/Users/Erik Sanchez/Downloads/DelRay"
 
-# Function to open a folder dialog and set the folder_path variable
 def select_folder():
     global folder_path
     folder_path = filedialog.askdirectory()
     update_image_files()
     show_next_image()
+    
+    # Update the window title with the folder name
+    folder_name = os.path.basename(folder_path)
+    root.title(f"Image Viewer - {folder_name}")
 
 # Initialize a global list to store image files
-image_files = [f for f in os.listdir(folder_path) if f.endswith((".jpg", ".png", ".gif"))]
+image_files = [f for f in os.listdir(folder_path) if f.endswith((".jpg", ".png", ".gif", ".jpeg"))]
 
 # Get a list of image files in the folder
 def update_image_files():
     global image_files
-    image_files = [f for f in os.listdir(folder_path) if f.endswith((".jpg", ".png", ".gif"))]
+    image_files = [f for f in os.listdir(folder_path) if f.endswith((".jpg", ".png", ".gif", ".jpeg"))]
+
+# Initialize current image index
+current_image = 0
 
 # Create a tkinter window
 root = TkinterDnD.Tk()
@@ -30,8 +36,6 @@ root.title("Image Viewer")
 image_label = Label(root)
 image_label.grid(row=0, column=0, columnspan=3, pady=10, padx=10)  # Adjust row, column, and other options as needed
 
-# Initialize current image index
-current_image = 0
 
 def show_next_image():
     global current_image
@@ -43,16 +47,15 @@ def show_next_image():
         photo = ImageTk.PhotoImage(img)
         image_label.config(image=photo)
         image_label.image = photo
-    elif current_image < len(image_files):
-        # Display the next image from the folder
-        img = Image.open(os.path.join(folder_path, image_files[current_image]))
-        img = img.resize((500, 500))  # Adjust the size as needed
-        photo = ImageTk.PhotoImage(img)
-        image_label.config(image=photo)
-        image_label.image = photo
-        current_image += 1
 
-# Function to display the previous image or a dropped image
+        # Set the new image file name in the new_name_entry
+        current_image_file = image_files[current_image]
+        new_name_entry.delete(0, 'end')
+        new_name_entry.insert(0, os.path.splitext(current_image_file)[0])
+        
+          # Update the window title
+        root.title(f"Image Viewer {current_image_file}")
+
 def show_previous_image():
     global current_image
     if len(image_files) > 0:
@@ -63,16 +66,14 @@ def show_previous_image():
         photo = ImageTk.PhotoImage(img)
         image_label.config(image=photo)
         image_label.image = photo
-    elif current_image < len(image_files):
-        # Display the previous image from the folder
-        current_image -= 1
-        if current_image < 0:
-            current_image = len(image_files) - 1
-        img = Image.open(os.path.join(folder_path, image_files[current_image]))
-        img = img.resize((500, 500))  # Adjust the size as needed
-        photo = ImageTk.PhotoImage(img)
-        image_label.config(image=photo)
-        image_label.image = photo
+
+        # Set the new image file name in the new_name_entry
+        current_image_file = image_files[current_image]
+        new_name_entry.delete(0, 'end')
+        new_name_entry.insert(0, os.path.splitext(current_image_file)[0])
+        
+          # Update the window title
+        root.title(f"Image Viewer {current_image_file}")
         
         
 # Initialize current image index
@@ -90,7 +91,7 @@ def rename_image():
         current_image_file = image_files[current_image]
         
         # Check if the file is an image (you can add more image extensions if needed)
-        if current_image_file.lower().endswith((".jpg", ".jpeg", ".png", ".gif")):
+        if current_image_file.lower().endswith((".jpg", ".png", ".gif", ".jpeg")):
             # Get the full path to the file
             current_image_path = os.path.join(folder_path, current_image_file)
             
@@ -129,7 +130,7 @@ def rename_all_images():
     # Process each dropped file
     for file_name in image_files:
         # Check if the file is an image (you can add more image extensions if needed)
-        if file_name.lower().endswith((".jpg", ".jpeg", ".png", ".gif")):
+        if file_name.lower().endswith((".jpg", ".png", ".gif", ".jpeg")):
             # Get the full path to the file
             file_path = os.path.join(folder_path, file_name)
 
