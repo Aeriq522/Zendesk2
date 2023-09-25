@@ -93,12 +93,19 @@ def run(playwright: Playwright) -> None:
                 "[data-test-id=\"omni-header-subject\"]").fill(Ticket_title)
             page.locator(
                 "[data-test-id=\"ticket-footer-macro-menu-autocomplete-input\"]").get_by_text("Apply macro").click()
+
             
             
-            page.locator("#downshift-4-item-4").click()
-            page.locator(
-                "[data-test-id=\"omnicomposer-rich-text-ckeditor\"]").click()
-            page.get_by_text("Site Survey").click()
+            if row[0].startswith('Site Survey'):
+                page.locator("[data-test-id=\"ticket-footer-macro-menu-autocomplete-input\"]").get_by_label("Apply macro autocomplete menu").click()
+                page.locator("[data-test-id=\"ticket-footer-macro-menu-autocomplete-input\"]").get_by_label("Apply macro autocomplete menu").fill("Site")
+                page.locator("[data-test-id=\"ticket-footer-macro-menu-autocomplete-input\"]").get_by_label("Apply macro autocomplete menu").fill("Site Survey")
+                
+                
+                
+                ###Need to fix this so it can be clicked for the template to spawn on the page, try rerunning the playwright codegen script 
+                page.locator("[data-test-id=\"ticket-footer-macro-item\"]").click()
+
 
        # Fill the form
             page.get_by_text("{Location}").fill(f"Location: {Location}")
