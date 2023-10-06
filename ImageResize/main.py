@@ -2,8 +2,8 @@ from PIL import Image
 import os
 
 # Specify the input and output directories
-input_directory = "C:/Users/eriks/Downloads/SiteImages"
-output_directory = "C:/Users/eriks/Downloads/SiteImages/Processed"
+input_directory = "C:/Users/eriks/Downloads/ImageResize"
+output_directory = "C:/Users/eriks/Downloads/ImageResize/Processed"
 
 # Create the output directory if it doesn't exist
 if not os.path.exists(output_directory):

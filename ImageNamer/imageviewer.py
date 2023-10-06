@@ -800,7 +800,6 @@ previous_button.grid(row=9, column=10, columnspan=4, padx=10, pady=10)
 next_button = Button(root, text="Next Image", padx=20, pady=10, command=show_next_image)
 next_button.grid(row=9, column=14,columnspan=4,  padx=10, pady=10)
 
-
 # Start the tkinter main loop
 root.mainloop()
 

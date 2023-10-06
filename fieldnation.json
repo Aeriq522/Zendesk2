@@ -1,0 +1,138 @@
+{
+  "cookies": [
+    {
+      "name": "_GRECAPTCHA",
+      "value": "09ANM-KtFH8HXRXtcJQv3yYoHWDY8hapDn6Fuir2vO6A3q_v3iS5fPqj-t-FAIkCmQ0Oa0-y1jrRpw4WgVIJFPLTg",
+      "domain": "www.google.com",
+      "path": "/recaptcha",
+      "expires": 1711864302.851574,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ambassador_session.authentication-prod-oauth-filter.default",
+      "value": "3465e4e3dbfeb2cd1972d72023121104abd873e036c772e80b1a3dfe61da7c92",
+      "domain": "app.fieldnation.com",
+      "path": "/",
+      "expires": 1727848244.583241,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ambassador_xsrf.authentication-prod-oauth-filter.default",
+      "value": "d05d6b5f5112b15cbd593e9453fb0e0704d396d3b2e8eec51376d8a65dc71724",
+      "domain": "app.fieldnation.com",
+      "path": "/",
+      "expires": 1727848244.583361,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__cfruid",
+      "value": "5a665482e7c1a77f4a44463ecc165ca669181ffd-1696312245",
+      "domain": ".fieldnation.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "connect.sid",
+      "value": "s%3AaZpeOIdjOlPnKtP6Y3ef-mkPTntQi2In.TpR69C8GKan%2FTFIS8tIhegP82RcObQqiv2iwA0og5gk",
+      "domain": "id.fieldnation.com",
+      "path": "/",
+      "expires": 1696398712.174741,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "XSRF-TOKEN",
+      "value": "df043c1a-75e9-4ad8-8a71-c4bd4d318684",
+      "domain": "id-sso.fieldnation.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "csrf-state",
+      "value": "wmQszE3rTQ6XnkAGWrmwrLQg9xr0Wq4puLvBBya4Jh4Vy9nxl0leNBRnBwa4oynvyURZr3rq8gifQI2G9uAHrosSKVOHpxpA2RvVOwFvm5XOpry6uktow52RV2YyrylEJ-mltU3DHvMHw1EGa_VsyvmKetYT9Ti-_KjgmIuLBOY",
+      "domain": "id-sso.fieldnation.com",
+      "path": "/",
+      "expires": 1696312547.74408,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "csrf-state-legacy",
+      "value": "wmQszE3rTQ6XnkAGWrmwrLQg9xr0Wq4puLvBBya4Jh4Vy9nxl0leNBRnBwa4oynvyURZr3rq8gifQI2G9uAHrosSKVOHpxpA2RvVOwFvm5XOpry6uktow52RV2YyrylEJ-mltU3DHvMHw1EGa_VsyvmKetYT9Ti-_KjgmIuLBOY",
+      "domain": "id-sso.fieldnation.com",
+      "path": "/",
+      "expires": 1696312547.744097,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "OTZ",
+      "value": "7233471_84_88_104280_84_446940",
+      "domain": "accounts.google.com",
+      "path": "/",
+      "expires": 1698904248,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "NID",
+      "value": "511=m1VmnZa25oBef5WU2NmRAm3Uf_jrJmlZa47JqKF8MMgEd4wumBvvaUnxZHat9siujw6CoWgHi-M5wQLDiWu-i84O1zPdsj4_956l-_7pbmW99Rsf2kWr0pU82Sot3Um9uROyi3J8iEcXaMf7tF4AsUtpH6qbkMW5QCXg4MDb0L8",
+      "domain": ".google.com",
+      "path": "/",
+      "expires": 1712123449.736265,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__Host-GAPS",
+      "value": "1:DYk4q8O13S0E2eLdosbzf4OqyGfOnw:VsrXdt49YfPQ7iRt",
+      "domain": "accounts.google.com",
+      "path": "/",
+      "expires": 1730872267.24078,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://id.fieldnation.com",
+      "localStorage": [
+        {
+          "name": "_grecaptcha",
+          "value": "09ANM-KtHIIYVN-g2PoKv9YSXpAJKa84HvXhfpUDAazvGPjFTESdsHoypzIitR6SLBlW7Sd7gkXustrQX9Xpejhg0teXB99GFPm05iZQ"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.google.com",
+      "localStorage": [
+        {
+          "name": "rc::a",
+          "value": "eHIxams1MXY5Z2JrdQ=="
+        },
+        {
+          "name": "rc::f",
+          "value": "0aANM-KtHuVEVBDJ3wGQr9xb3m4V77ISgKYSx1hCEAOKD4SlFmH25igoSke0wz0qtypG0dOoA"
+        }
+      ]
+    }
+  ]
+}
